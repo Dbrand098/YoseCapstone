@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sqlite3.h>
 #include <string>
-#include<stdio.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -19,6 +19,7 @@ static int callback(void* data, int argc, char** argv, char** azColName)
 
 }
 
+//BEGINING OF REMOVE FUNCTIONS
 // static int removeVacancies(){
 
 // sqlite3* DB; 
@@ -59,6 +60,7 @@ static int callback(void* data, int argc, char** argv, char** azColName)
 
 // }
 
+//BEGINING OF ADDING FUNCTIONS
 // static int insertVacancies(){
 
 // sqlite3* DB; 
@@ -102,6 +104,7 @@ static int callback(void* data, int argc, char** argv, char** azColName)
 
 // }
 
+//BEGINING OF MODIFYING FUNCTIONS
 static int modifyMRA(sqlite3* DB,string data){
 
     std::string MRAID;
@@ -247,44 +250,72 @@ static int modifyPI(sqlite3* DB,string data){
 //     } 
 //     return (0); 
 // }
-int modify(sqlite3* DB,string data){
+
+// All of these functions bellow call additional functions for adding, removing, or modifying existing parameters for MRAs, Permits, PIs, and Addendums.
+int modify(sqlite3* DB,string data){                                       //work on this function Brandon
 	std::cout << "Press 1 to modify data in the MRA Table \n";
 	std::cout << "Press 2 to modify data in the Permit Table \n";
 	std::cout << "Press 3 to modify data in the PI Table \n";
 	std::cout << "Press 4 to modify data in the Addendum Table \n";
 	int interest = 0;
 	std::cin >> interest;
-	if(interest == 1){
+
+	if(interest == 1){      
 		modifyMRA(DB, data);
-	}
-	// else if(interest = 2){
-	// 	modifyPermit();
-	// }
-	else if(interest = 2){
-		modifyPI(DB, data);
-	}
-	// else if(interest = 2){
-	// 	modifyAddendum();
-	// }
+	}//access to the MRA function
+
+	else if(interest = 2){  
+		modifyPermit(DB, data);     // Function modifyPermit() is commented out
+	}//access to the permit function
+	
+    else if(interest == 3){ 
+        modifyPI(DB, data);
+    }//access to the PI function
+
+    else if(interest == 4){  
+        modifyAddendum(DB, data);   //Function modifyAddendum() does not exist yet in my copy
+    }//access to the Addendum function
+
+    else if(interest > 4){
+        std::cout << "Error, " + interest + " is nto and option. Try selecting from options 1 through 4 \n";
+        modify(DB, data); /*calling recursively, idk it makes sense to call the function again so they 
+                            can select a correct option; instance when no real option is selected.*/
+    }
+        
 	return 0;
 }
-int remove(){
+
+int remove(){    //Are we passing any parameters here? -Brandon             //work on this function Brandon
 	std::cout << "Press 1 to remove data from the MRA Table \n";
 	std::cout << "Press 2 to remove data from the Permit Table \n";
 	std::cout << "Press 3 to remove data from the PI Table \n";
 	std::cout << "Press 4 to remove data from the Addendum Table \n";
 	int interest = 0;
 	std::cin >> interest;
-	// if(interest == 3){
-	// 	removeBusiness();
-	// }
-	// else if(interest = 4){
-	// 	removeVacancies();
-	// }
+	
+    if(interest == 1){
+        //insert remove MRA data function here
+    }
+
+    else if(interest == 2 ){
+        //insert remove Permit data function here
+    }
+    else if(interest == 3){
+	 	removeBusiness(); //function for PI data removal does not exist yet
+	 }
+	 else if(interest = 4){
+	 	removeVacancies(); //function for Addendums has been commented out
+	 }
+
+     else if(interest > 4){
+        std::cout << "Error, " + interest + " is not an option. Try selecting from options 1 through 4 \n";
+        remove(); /*calling recursively, idk it makes sense to call the function again so they 
+                            can select a correct option; instance when no real option is selected.*/
+     }
 	return 0;
 }
 
-static int insert(){
+static int insert(){     //Are we passing parameters here?                   //work on this function Brandon
 
 	std::cout << "Press 1 to insert data into the MRA Table \n";
 	std::cout << "Press 2 to insert data into the Permit Table \n";
@@ -292,12 +323,28 @@ static int insert(){
 	std::cout << "Press 4 to insert data into the Addendum Table \n";
 	int interest = 0;
 	std::cin >> interest;
-	// if(interest == 5){
-	// 	insertBusiness();
-	// }
-	// else if(interest = 6){
-	// 	insertVacancies();
-	// }
+	
+    if(interest == 1){
+        //add the MRA insert function here
+    }
+    else if(interest == 2){
+        //add the Permit insert function here
+    }
+
+    else if(interest == 3){
+	 	insertBusiness(); //function adding PI data does not yet exist
+	 }
+	
+    else if(interest == 4){
+	 	insertVacancies(); //Function adding Addendum Data has been commented out.
+	 }
+
+     else if(interest > 4){
+        std::cout << "Error, " + interest + " is not an option try selecting from options 1 through 4 \n";
+        ionsert(); /*calling recursively, idk it makes sense to call the function again so they 
+                            can select a correct option; instance when no real option is selected.*/
+     }
+     
 	return 0;
 }
 
