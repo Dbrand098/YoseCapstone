@@ -112,40 +112,56 @@ static int removeAddendum(sqlite3* DB,string data){
 }
 
 //BEGINING OF ADDING FUNCTIONS
-// static int insertAddendum(){
-
-//     std::string addid;
-//     int update_option = 0;
-
-//     std::string v_vacid, v_address, v_owner, v_telephone, v_rent, v_districtid;
-//     std::cout << "What would you like to insert? \n";
-//     std::cout << "vacid?, " << "address?, " << "owner?, " << "telephone?, " << "rent?, " << "districtid?" "\n";
-//     std::cin >> v_vacid >> v_address >> v_owner >> v_telephone >> v_rent >> v_districtid;
-
-//     std::string sqlquery = "INSERT INTO Vacancies Values ('"+v_vacid+"', '"+v_address+"', '"+v_owner+"', '"+v_telephone+"', '"+v_rent+"', '"+v_districtid+"') \n";
-//     std::cout << sqlquery;
-  
-//     std::string sql(sqlquery); 
-
-  
-//     int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
-  
-//     if (rc != SQLITE_OK) 
-//         std::cerr << "Error SELECT" << std::endl; 
-//     else { 
-//         std::cout << "Operation OK!" << std::endl; 
-//     } 
-//     return (0); 
-
-
-// }
-
 static int insertMRA(sqlite3* DB,string data){
     //inserty additional logic here
+    std::string mraid;
+    int update_option = 0;
+
+    std::string MRA_ID, MRA_TITLE, STUDY_ID, MRA_YEAR, MRA_LINK, GIS_LINK;
+    std::cout << "What would you like to insert? \n";
+    std::cout << "MRA_ID?, " << "MRA_TITLE?, " << "STUDY_ID?, " << "MRA_YEAR?, " << "MRA_LINK?, " << "GIS_LINK?\n";
+    std::cin >> MRA_ID >> MRA_TITLE >> STUDY_ID >> MRA_YEAR >> MRA_LINK >> GIS_LINK;
+
+    std::string sqlquery = "INSERT INTO MRA Values ('" + MRA_ID + "', '" + MRA_TITLE + "', '" + STUDY_ID + "', '" + MRA_YEAR + "', '" + MRA_LINK + "', '" + GIS_LINK + "') \n";
+    std::cout << sqlquery;
+  
+    std::string sql(sqlquery); 
+
+  
+    int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
+  
+    if (rc != SQLITE_OK) 
+        std::cerr << "Error SELECT" << std::endl; 
+    else { 
+        std::cout << "Operation OK!" << std::endl; 
+    } 
+    return (0); 
 }//MRA insert function created
 
 static int insertPermit(sqlite3* DB,string data){
     //inserty additional logic here
+    std::string perid;
+    int update_option = 0;
+
+    std::string PERMIT_ID, PERMIT_TITLE, PI_ID, STUDY_ID, PERMIT_START, PERMIT_END, PERMIT_YEAR, PERMIT_LINK;
+    std::cout << "What would you like to insert? \n";
+    std::cout << "PERMIT_ID?, " << "PERMIT_TITLE?, " << "PI_ID?, " << "STUDY_ID?, " << "PERMIT_START?, " << "PERMIT_END?, " << "PERMIT_END? , " << "PERMIT_YEAR, " << "PERMIT_LINK?\n";
+    std::cin >> PERMIT_ID >> PERMIT_TITLE >> PI_ID >> STUDY_ID >> PERMIT_START >> PERMIT_END >> PERMIT_YEAR >> PERMIT_LINK;
+
+    std::string sqlquery = "INSERT INTO Permit Values ('" + PERMIT_ID + "', '" + PERMIT_TITLE + "', '" + PI_ID + "', '" + STUDY_ID + "', '" + PERMIT_START + "', '" + PERMIT_END + "', '" + PERMIT_END + "', '" + PERMIT_YEAR + "', '" + PERMIT_LINK + "') \n";
+    std::cout << sqlquery;
+  
+    std::string sql(sqlquery); 
+
+  
+    int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
+  
+    if (rc != SQLITE_OK) 
+        std::cerr << "Error SELECT" << std::endl; 
+    else { 
+        std::cout << "Operation OK!" << std::endl; 
+    } 
+    return (0); 
 }// Permit insert function created
    
 static int insertPI(sqlite3* DB,string data){
@@ -156,7 +172,7 @@ static int insertPI(sqlite3* DB,string data){
 
     std::string PI_ID, PI_NAME, PI_PHONE, PI_EMAIL;
     std::cout << "What would you like to insert? \n";
-    std::cout << "PI_ID?, " << "PI_NAME?, " << "PI_PHONE, " << "PI_EMAIL\n";
+    std::cout << "PI_ID?, " << "PI_NAME?, " << "PI_PHONE?, " << "PI_EMAIL?\n";
     std::cin >> PI_ID >> PI_NAME >> PI_PHONE >> PI_EMAIL;
 
     std::string sqlquery = "INSERT INTO PI Values ('"+PI_ID+"', '"+PI_NAME+"', '"+PI_PHONE+"', '"+PI_EMAIL+"') \n";
@@ -174,8 +190,31 @@ static int insertPI(sqlite3* DB,string data){
     } 
     return (0); 
 } //function adding PI data crea
+
 static int insertAddendum(sqlite3* DB,string data){
-    //inserty additional logic here
+    //insert additional logic here
+    std::string addid;
+    int update_option = 0;
+
+    std::string ADD_ID, ADD_TITLE, MRA_ID, ADD_YEAR, ADD_LINK;
+    std::cout << "What would you like to insert? \n";
+    std::cout << "ADD_ID?, " << "ADD_TITLE?, " << "MRA_ID?, " << "ADD_YEAR?, " << "ADD_LINK?\n";
+    std::cin >> ADD_ID >> ADD_TITLE >> MRA_ID >> ADD_YEAR >> ADD_LINK;
+
+    std::string sqlquery = "INSERT INTO Addendum Values ('" + ADD_ID + "', '" + ADD_TITLE + "', '" + MRA_ID + "', '" + ADD_YEAR + "', '" + ADD_LINK + "') \n";
+    std::cout << sqlquery;
+  
+    std::string sql(sqlquery); 
+
+  
+    int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
+  
+    if (rc != SQLITE_OK) 
+        std::cerr << "Error SELECT" << std::endl; 
+    else { 
+        std::cout << "Operation OK!" << std::endl; 
+    } 
+    return (0); 
 }// Permit insert function created
 
 //BEGINING OF MODIFYING FUNCTIONS
@@ -338,83 +377,86 @@ int modify(sqlite3* DB,string data){                                       //wor
 	int interest = 0;
 	std::cin >> interest;
 
-	if(interest == 1){      
-		modifyMRA(DB, data);
-	}//access to the MRA function
-
-	else if(interest = 2){  
-		modifyPermit(DB, data);     // Function modifyPermit() is commented out
-	}//access to the permit function
-	
-    else if(interest == 3){ 
-        modifyPI(DB, data);
-    }//access to the PI function
-
-    else if(interest == 4){  
-        modifyAddendum(DB, data);   //Function modifyAddendum() createed
-    }//access to the Addendum function
-
-    else if(interest > 4){
-        std::cout << "Error, " + interest + " is not and option. Try selecting from options 1 through 4 \n";
-        modify(DB, data); /*calling recursively, idk it makes sense to call the function again so they 
-                            can select a correct option; instance when no real option is selected.*/
+    std:int exit = 1; /*changed it to 1 so that the while loop can begin 
+                    //logically speaking the while loop will never initialize with exit = 0
+                    // because this is always going to be zero*/
+	while(exit != 0){  
+	    if(interest == 1){      
+		    modifyMRA(DB, data);
+            exit = 0;
+	    }//access to the MRA function
+	    else if(interest = 2){  
+	    	modifyPermit(DB, data);     // Function modifyPermit() is commented out
+            exit = 0;
+    	}//access to the permit function
+        else if(interest == 3){ 
+           modifyPI(DB, data);
+           exit = 0;
+        }//access to the PI function
+        else if(interest == 4){  
+            modifyAddendum(DB, data);   //Function modifyAddendum() createed
+            exit = 0;
+        }//access to the Addendum function
     }
-        
 	return 0;
 }
 
 int remove(sqlite3* DB,string data){       //work on this function Brandon
 
-    std:int exit = 0;                               //logically speaking the while loop will never initialize
-
-	while(exit != 0){                                  // because this is always going to be zero
-	std::cout << "Press 1 to remove data from the MRA Table \n";
-	std::cout << "Press 2 to remove data from the Permit Table \n";
-	std::cout << "Press 3 to remove data from the PI Table \n";
-	std::cout << "Press 4 to remove data from the Addendum Table \n";
-	int interest = 0;
-	std::cin >> interest;
-    if(interest == 1){
-        removeMRA(DB, data);//remove MRA data function created and finished
-    }
-    else if(interest == 2 ){
-        removePermit(DB, data);//remove Permit data function created
-    }
-    else if(interest == 3){
-	 	removePI(DB, data); //function for PI data removal created
-	 }
-	 else if(interest = 4){
-	 	removeAddendum(DB, data); //function for Addendums has been commented out
-	 }
+    std:int exit = 1; /*changed it to 1 so that the while loop can begin 
+                    //logically speaking the while loop will never initialize with exit = 0
+                    // because this is always going to be zero*/
+	while(exit != 0){                                 
+	    std::cout << "Press 1 to remove data from the MRA Table \n";
+	    std::cout << "Press 2 to remove data from the Permit Table \n";
+	    std::cout << "Press 3 to remove data from the PI Table \n";
+	    std::cout << "Press 4 to remove data from the Addendum Table \n";
+	    int interest = 0;
+	    std::cin >> interest;
+        if(interest == 1){
+            removeMRA(DB, data);//remove MRA data function created and finished
+            exit = 0;
+         }
+        else if(interest == 2 ){
+            removePermit(DB, data);//remove Permit data function created
+            exit = 0;
+        }
+        else if(interest == 3){
+	 	    removePI(DB, data); //function for PI data removal created
+	        exit = 0;
+        }
+	    else if(interest = 4){
+	 	    removeAddendum(DB, data); //function for Addendums has been commented out
+	        exit = 0;
+        }
 	 }	 
 	return 0;
 }
 
-static int insert(/*INSERT PARAMETERS HERE*/){     //Are we passing parameters here?                   //work on this function Brandon
-	std:int exit = 0;
+static int insert(sqlite3* DB,string data){              //work on this function Brandon
+	std:int exit = 1; //modified the while loop parameter 
+                      //in the same way that I did for the remove() function so that  it runs
 
-	while(exit !=0){
-	std::cout << "Press 1 to insert data into the MRA Table \n";
-	std::cout << "Press 2 to insert data into the Permit Table \n";
-	std::cout << "Press 3 to insert data into the PI Table \n";
-	std::cout << "Press 4 to insert data into the Addendum Table \n";
-	int interest = 0;
-	std::cin >> interest;
+	while(exit != 0){
+	    std::cout << "Press 1 to insert data into the MRA Table \n";
+	    std::cout << "Press 2 to insert data into the Permit Table \n";
+	    std::cout << "Press 3 to insert data into the PI Table \n";
+	    std::cout << "Press 4 to insert data into the Addendum Table \n";
+	    int interest = 0;
+	    std::cin >> interest;
 	
-    if(interest == 1){
-        insertMRA(/*INSERT PARAMETERS HERE*/);//MRA insert function created
-    }
-    else if(interest == 2){
-        insertPermit(/*INSERT PARAMETERS HERE*/);// Permit insert function created
-    }
-
-    else if(interest == 3){
-	 	insertBusiness(/*INSERT PARAMETERS HERE*/); //function adding PI data created
-	 }
-	
-    else if(interest == 4){
-	 	insertVacancies(); //Function adding Addendum Data has been commented out.
-	 }
+        if(interest == 1){
+            insertMRA(DB, data);//MRA insert function created
+        }
+        else if(interest == 2){
+            insertPermit(DB, data);// Permit insert function created
+        }
+        else if(interest == 3){
+	    	insertPI(DB, data); //function adding PI data created
+	    }
+        else if(interest == 4){
+	    	insertAddendum(DB, data); //Function adding Addendum created.
+	    }
  	}
 
 	return 0;
@@ -506,9 +548,9 @@ static int user(sqlite3* DB,string data){
     else if(x == 6){
     	remove(DB, data);
     }
-	// else if (x == 7){
-	// 	insert(DB, data);
-	// }
+	else if (x == 7){
+	 	insert(DB, data);
+	}
 
 	return 0;
 }
