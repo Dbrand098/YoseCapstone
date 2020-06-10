@@ -5,8 +5,7 @@
 
 using namespace std;
 
-static int callback(void* data, int argc, char** argv, char** azColName) 
-{ 
+static int callback(void* data, int argc, char** argv, char** azColName){ 
     int i; 
     fprintf(stderr, "%s", (const char*)data); 
   
@@ -141,15 +140,15 @@ static int removeAddendum(sqlite3* DB,string data){
 
 // }
 
-static int insertMRA(sqlite3* DB,string data);{
+static int insertMRA(sqlite3* DB,string data){
     //inserty additional logic here
 }//MRA insert function created
 
-static int insertPermit(sqlite3* DB,string data);{
+static int insertPermit(sqlite3* DB,string data){
     //inserty additional logic here
 }// Permit insert function created
    
-static int insertPI(sqlite3* DB,string data);{
+static int insertPI(sqlite3* DB,string data){
     //inserty additional logic here
 
     std::string piid;
@@ -175,7 +174,7 @@ static int insertPI(sqlite3* DB,string data);{
     } 
     return (0); 
 } //function adding PI data crea
-static int insertAddendum(sqlite3* DB,string data);{
+static int insertAddendum(sqlite3* DB,string data){
     //inserty additional logic here
 }// Permit insert function created
 
@@ -364,12 +363,11 @@ int modify(sqlite3* DB,string data){                                       //wor
 	return 0;
 }
 
-int remove(){    //Are we passing any parameters here? -Brandon             //work on this function Brandon
+int remove(sqlite3* DB,string data){       //work on this function Brandon
 
-	
-std:int exit = 0;
+    std:int exit = 0;                               //logically speaking the while loop will never initialize
 
-	while(exit !=0){
+	while(exit != 0){                                  // because this is always going to be zero
 	std::cout << "Press 1 to remove data from the MRA Table \n";
 	std::cout << "Press 2 to remove data from the Permit Table \n";
 	std::cout << "Press 3 to remove data from the PI Table \n";
@@ -377,16 +375,16 @@ std:int exit = 0;
 	int interest = 0;
 	std::cin >> interest;
     if(interest == 1){
-        removeMRA(/*INSERT PARAMETERS HERE*/);//remove MRA data function created
+        removeMRA(DB, data);//remove MRA data function created and finished
     }
     else if(interest == 2 ){
-        removePermit(/*INSERT PARAMETERS HERE*/);//remove Permit data function created
+        removePermit(DB, data);//remove Permit data function created
     }
     else if(interest == 3){
-	 	removeBusiness(/*INSERT PARAMETERS HERE*/); //function for PI data removal created
+	 	removePI(DB, data); //function for PI data removal created
 	 }
 	 else if(interest = 4){
-	 	removeVacancies(/*INSERT PARAMETERS HERE*/); //function for Addendums has been commented out
+	 	removeAddendum(DB, data); //function for Addendums has been commented out
 	 }
 	 }	 
 	return 0;
@@ -502,12 +500,12 @@ static int user(sqlite3* DB,string data){
 	else if(x == 4){
 		ADDList(DB, data);
 	}
-	else if(x == 5){
-		modify(DB, data);
-	}
- //   	else if(x == 6){
- //   		remove(DB, data);
- //   	}
+	//else if(x == 5){
+	//	modify(DB, data);
+	//}
+    else if(x == 6){
+    	remove(DB, data);
+    }
 	// else if (x == 7){
 	// 	insert(DB, data);
 	// }
