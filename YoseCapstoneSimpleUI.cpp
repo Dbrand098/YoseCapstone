@@ -20,69 +20,102 @@ static int callback(void* data, int argc, char** argv, char** azColName)
 }
 
 //BEGINING OF REMOVE FUNCTIONS
-// static int removeVacancies(){
-
-// sqlite3* DB; 
-//     int exit = 0; 
-//     exit = sqlite3_open("Mercedstore.db", &DB); 
-//     std::string data("\n"); 
-
-//     Vacancies();
-
-//     std::string vacid;
-//     int update_option = 0;
-//     std::cout << "Which Vacant Business would you like to remove? (vacid) \n";
-//     std::cin >> vacid;
-    
-//     std::string sqlquery = "DELETE FROM Vacancies WHERE v_vacid = "+vacid+" \n";
-//     std::cout << sqlquery;
-  
-//     std::string sql(sqlquery); 
-//     if (exit) { 
-//         std::cerr << "Error open DB " << sqlite3_errmsg(DB) << std::endl; 
-//         return (-1); 
-//     } 
-//     else
-//         std::cout << "Opened Database Successfully!" << std::endl; 
-
-  
-//     int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
-  
-//     if (rc != SQLITE_OK) 
-//         std::cerr << "Error SELECT" << std::endl; 
-//     else { 
-//         std::cout << "Operation OK!" << std::endl; 
-//     } 
-  
-//     sqlite3_close(DB); 
-//     return (0); 
-
-
-// }
-
-static int removeMRA(/*insert parameters here*/){
+static int removeMRA(sqlite3* DB,string data){
     //insert logic here
+    std::string mraid;
+    int update_option = 0;
+    std::cout << "Which Minimum Requirement Analysis would you like to remove? (mraid) \n";
+    std::cin >> mraid;
+    
+    std::string sqlquery = "DELETE FROM MRA WHERE MRA_ID = " + mraid + " \n";
+    std::cout << sqlquery;
+  
+    std::string sql(sqlquery); 
+  
+    int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
+  
+    if (rc != SQLITE_OK) 
+        std::cerr << "Error SELECT" << std::endl; 
+    else { 
+        std::cout << "Operation OK!" << std::endl; 
+    } 
+
+    return (0); 
 }
   
-static int removePermit(/*insert parameters here*/){
+static int removePermit(sqlite3* DB,string data){
     //insert logic here
+    std::string perid;
+    int update_option = 0;
+    std::cout << "Which Permit would you like to remove? (perid) \n";
+    std::cin >> perid;
+    
+    std::string sqlquery = "DELETE FROM Permit WHERE PERMIT_ID = " + perid + " \n";
+    std::cout << sqlquery;
+  
+    std::string sql(sqlquery); 
+  
+    int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
+  
+    if (rc != SQLITE_OK) 
+        std::cerr << "Error SELECT" << std::endl; 
+    else { 
+        std::cout << "Operation OK!" << std::endl; 
+    } 
+
+    return (0); 
 }
     
-static int removeBusiness(/*insert parameters here*/){
+static int removePI(sqlite3* DB,string data){
     //insert logic here
+    std::string piid;
+    int update_option = 0;
+    std::cout << "Which Private Investigator would you like to remove? (vacid) \n";
+    std::cin >> piid;
+    
+    std::string sqlquery = "DELETE FROM PI WHERE PI_ID = "+piid+" \n";
+    std::cout << sqlquery;
+  
+    std::string sql(sqlquery); 
+  
+    int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
+  
+    if (rc != SQLITE_OK) 
+        std::cerr << "Error SELECT" << std::endl; 
+    else { 
+        std::cout << "Operation OK!" << std::endl; 
+    } 
+
+    return (0); 
+}
+
+static int removeAddendum(sqlite3* DB,string data){
+    //insert logic here
+    std::string addid;
+    int update_option = 0;
+    std::cout << "Which Addendum would you like to remove? (addid) \n";
+    std::cin >> addid;
+    
+    std::string sqlquery = "DELETE FROM Addendum WHERE ADD_ID = " + addid + " \n";
+    std::cout << sqlquery;
+  
+    std::string sql(sqlquery); 
+  
+    int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
+  
+    if (rc != SQLITE_OK) 
+        std::cerr << "Error SELECT" << std::endl; 
+    else { 
+        std::cout << "Operation OK!" << std::endl; 
+    } 
+
+    return (0); 
 }
 
 //BEGINING OF ADDING FUNCTIONS
-// static int insertVacancies(){
+// static int insertAddendum(){
 
-// sqlite3* DB; 
-//     int exit = 0; 
-//     exit = sqlite3_open("Mercedstore.db", &DB); 
-//     std::string data("\n"); 
-
-//     Vacancies();
-
-//     std::string vacid;
+//     std::string addid;
 //     int update_option = 0;
 
 //     std::string v_vacid, v_address, v_owner, v_telephone, v_rent, v_districtid;
@@ -94,12 +127,6 @@ static int removeBusiness(/*insert parameters here*/){
 //     std::cout << sqlquery;
   
 //     std::string sql(sqlquery); 
-//     if (exit) { 
-//         std::cerr << "Error open DB " << sqlite3_errmsg(DB) << std::endl; 
-//         return (-1); 
-//     } 
-//     else
-//         std::cout << "Opened Database Successfully!" << std::endl; 
 
   
 //     int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
@@ -109,24 +136,48 @@ static int removeBusiness(/*insert parameters here*/){
 //     else { 
 //         std::cout << "Operation OK!" << std::endl; 
 //     } 
-  
-//     sqlite3_close(DB); 
 //     return (0); 
 
 
 // }
 
-static int insertMRA(/*insert parameters here*/);{
+static int insertMRA(sqlite3* DB,string data);{
     //inserty additional logic here
 }//MRA insert function created
 
-static int insertPermit(/*insert parameters here*/);{
+static int insertPermit(sqlite3* DB,string data);{
     //inserty additional logic here
 }// Permit insert function created
    
-static int insertBusiness(/*insert parameters here*/);{
+static int insertPI(sqlite3* DB,string data);{
     //inserty additional logic here
+
+    std::string piid;
+    int update_option = 0;
+
+    std::string PI_ID, PI_NAME, PI_PHONE, PI_EMAIL;
+    std::cout << "What would you like to insert? \n";
+    std::cout << "PI_ID?, " << "PI_NAME?, " << "PI_PHONE, " << "PI_EMAIL\n";
+    std::cin >> PI_ID >> PI_NAME >> PI_PHONE >> PI_EMAIL;
+
+    std::string sqlquery = "INSERT INTO PI Values ('"+PI_ID+"', '"+PI_NAME+"', '"+PI_PHONE+"', '"+PI_EMAIL+"') \n";
+    std::cout << sqlquery;
+  
+    std::string sql(sqlquery); 
+
+  
+    int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
+  
+    if (rc != SQLITE_OK) 
+        std::cerr << "Error SELECT" << std::endl; 
+    else { 
+        std::cout << "Operation OK!" << std::endl; 
+    } 
+    return (0); 
 } //function adding PI data crea
+static int insertAddendum(sqlite3* DB,string data);{
+    //inserty additional logic here
+}// Permit insert function created
 
 //BEGINING OF MODIFYING FUNCTIONS
 static int modifyMRA(sqlite3* DB,string data){
@@ -314,13 +365,17 @@ int modify(sqlite3* DB,string data){                                       //wor
 }
 
 int remove(){    //Are we passing any parameters here? -Brandon             //work on this function Brandon
+
+	
+std:int exit = 0;
+
+	while(exit !=0){
 	std::cout << "Press 1 to remove data from the MRA Table \n";
 	std::cout << "Press 2 to remove data from the Permit Table \n";
 	std::cout << "Press 3 to remove data from the PI Table \n";
 	std::cout << "Press 4 to remove data from the Addendum Table \n";
 	int interest = 0;
 	std::cin >> interest;
-	
     if(interest == 1){
         removeMRA(/*INSERT PARAMETERS HERE*/);//remove MRA data function created
     }
@@ -333,17 +388,14 @@ int remove(){    //Are we passing any parameters here? -Brandon             //wo
 	 else if(interest = 4){
 	 	removeVacancies(/*INSERT PARAMETERS HERE*/); //function for Addendums has been commented out
 	 }
-
-     else if(interest > 4){
-        std::cout << "Error, " + interest + " is not an option. Try selecting from options 1 through 4 \n";
-        remove(); /*calling recursively, idk it makes sense to call the function again so they 
-                            can select a correct option; instance when no real option is selected.*/
-     }
+	 }	 
 	return 0;
 }
 
 static int insert(/*INSERT PARAMETERS HERE*/){     //Are we passing parameters here?                   //work on this function Brandon
+	std:int exit = 0;
 
+	while(exit !=0){
 	std::cout << "Press 1 to insert data into the MRA Table \n";
 	std::cout << "Press 2 to insert data into the Permit Table \n";
 	std::cout << "Press 3 to insert data into the PI Table \n";
@@ -365,12 +417,7 @@ static int insert(/*INSERT PARAMETERS HERE*/){     //Are we passing parameters h
     else if(interest == 4){
 	 	insertVacancies(); //Function adding Addendum Data has been commented out.
 	 }
-
-     else if(interest > 4){
-        std::cout << "Error, " + interest + " is not an option try selecting from options 1 through 4 \n";
-        ionsert(); /*calling recursively, idk it makes sense to call the function again so they 
-                            can select a correct option; instance when no real option is selected.*/
-     }
+ 	}
 
 	return 0;
 }
