@@ -166,7 +166,6 @@ static int insertPermit(sqlite3* DB,string data){
    
 static int insertPI(sqlite3* DB,string data){
     //inserty additional logic here
-
     std::string piid;
     int update_option = 0;
 
@@ -224,7 +223,7 @@ static int modifyMRA(sqlite3* DB,string data){
     int update_option = 0;
     std::cout << "Which MRA would you like to update? (MRA_ID) \n";
     std::cin >> MRAID;
-    std:: cout << "What information do you want to update?";
+    std:: cout << "What information do you want to update? \n";
     std:: cout << "Press 1 to change the MRA title \n";
     std:: cout << "Press 2 to change the Study ID \n";
     std:: cout << "Press 3 to change the MRA Year \n";
@@ -269,13 +268,14 @@ static int modifyMRA(sqlite3* DB,string data){
     } 
     return (0); 
 }
+
 static int modifyPI(sqlite3* DB,string data){
 
     std::string PIID;
     int update_option = 0;
     std::cout << "Which PI would you like to update? (PI_ID) \n";
     std::cin >> PIID;
-    std:: cout << "What information do you want to update?";
+    std:: cout << "What information do you want to update? \n";
     std:: cout << "Press 1 to change the PI name \n";
     std:: cout << "Press 2 to change the PI phone number \n";
     std:: cout << "Press 3 to change the PI email \n";
@@ -312,60 +312,113 @@ static int modifyPI(sqlite3* DB,string data){
     } 
     return (0); 
 }
-// static int modifyPermit(){
 
-//     std::string PermitID;
-//     int update_option = 0;
-//     std::cout << "Which Permit would you like to update? (PERMIT_ID) \n";
-//     std::cin >> PermitID;
-//     std:: cout << "What information do you want to update?";
-//     std:: cout << "Press 1 to change the MRA title \n";
-//     std:: cout << "Press 2 to change the Study ID \n";
-//     std:: cout << "Press 3 to change the MRA Year \n";
-//     std:: cout << "Press 4 to change the MRA Link \n";
-//     std:: cout << "Press 5 to change the GIS Link \n";
+static int modifyPermit(sqlite3* DB,string data){
 
-//     std::cin >> update_option;
+    std::string PERID;
+    int update_option = 0;
+    std::cout << "Which Permit would you like to update? (PERMIT_ID) \n";
+    std::cin >> PERID;
+    std:: cout << "What information do you want to update? \n";
+    std:: cout << "Press 1 to change the Permit Title \n";
+    std:: cout << "Press 2 to change the Private Investigator ID \n";
+    std:: cout << "Press 3 to change the Study ID \n";
+    std:: cout << "Press 4 to change the Permit Start \n";
+    std:: cout << "Press 5 to change the Permit End \n";
+    std:: cout << "Press 6 to change the Permit Year \n";
+    std:: cout << "Press 7 to change the Permit Link \n";
 
-//     std::string option;
-//     if (update_option == 1){
-//     	option = "MRA_TITLE";
-//     }
-//     else if (update_option == 2){
-//     	option = "STUDY_ID";
-//     }
-//     else if (update_option == 3){
-//     	option = "MRA_YEAR";
-//     }
-//     else if (update_option == 4){
-//     	option = "MRA_LINK";
-//     }
-//     else if (update_option == 5){
-//     	option = "GIS_LINK";
-//     }
-//     std::string modify;
-//     std::cout << "What would you like to change it to? \n";
-//     std::cin >> modify;
-//     //std::getline(std::cin,modify);
+    std::cin >> update_option;
+
+    std::string option;
+    if (update_option == 1){
+    	option = "PERMIT_TITLE";
+    }
+    else if (update_option == 2){
+    	option = "PI_ID";
+    }
+    else if (update_option == 3){
+    	option = "STUDY_ID";
+    }
+    else if (update_option == 4){
+    	option = "PERMIT_START";
+    }
+    else if (update_option == 5){
+    	option = "PERMIT_END";
+    }
+    else if(update_option == 6){
+        option = "PERMIT_YEAR";
+    }
+    else if(update_option == 7){
+        option = "PERMIT_LINK";
+    }
+    std::string modify;
+    std::cout << "What would you like to change it to? \n";
+    std::cin >> modify;
+    //std::getline(std::cin,modify);
     
-//     std::string sqlquery = "Update MRA SET "+option+" = '"+modify+"' WHERE MRA_ID = " + MRAID + "\n";
-//     std::cout << sqlquery;
+    std::string sqlquery = "Update Permit SET " + option + " = '" + modify + "' WHERE PERMIT_ID = " + PERID + "\n";
+    std::cout << sqlquery;
   
-//     std::string sql(sqlquery); 
+    std::string sql(sqlquery); 
 
   
-//     int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
+    int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
   
-//     if (rc != SQLITE_OK) 
-//         std::cerr << "Error SELECT" << std::endl; 
-//     else { 
-//         std::cout << "Operation OK!" << std::endl; 
-//     } 
-//     return (0); 
-// } 
+    if (rc != SQLITE_OK) 
+        std::cerr << "Error SELECT" << std::endl; 
+    else { 
+        std::cout << "Operation OK!" << std::endl; 
+    } 
+    return (0); 
+} 
 
-static int modifyAddendum(/*insert parameters here*/){
+static int modifyAddendum(sqlite3* DB,string data){
     //insert logic here
+     std::string ADDID;
+    int update_option = 0;
+    std::cout << "Which Addendum would you like to update? (ADD_ID) \n";
+    std::cin >> ADDID;
+    std:: cout << "What information do you want to update? \n";
+    std:: cout << "Press 1 to change the Addendum Title \n";
+    std:: cout << "Press 2 to change the MRA ID \n";
+    std:: cout << "Press 3 to change the Addendum Year \n";
+    std:: cout << "Press 4 to change the Addendum Link \n";
+
+    std::cin >> update_option;
+
+    std::string option;
+    if (update_option == 1){
+    	option = "ADD_TITLE";
+    }
+    else if (update_option == 2){
+    	option = "MRA_ID";
+    }
+    else if (update_option == 3){
+    	option = "ADD_YEAR";
+    }
+    else if (update_option == 4){
+    	option = "ADD_LINK";
+    }
+    std::string modify;
+    std::cout << "What would you like to change it to? \n";
+    std::cin >> modify;
+    //std::getline(std::cin,modify);
+    
+    std::string sqlquery = "Update Addendum SET " + option + " = '" + modify + "' WHERE ADD_ID = " + ADDID + "\n";    
+    std::cout << sqlquery;
+  
+    std::string sql(sqlquery); 
+
+  
+    int rc = sqlite3_exec(DB, sql.c_str(), NULL, (void*)data.c_str(), NULL); 
+  
+    if(rc != SQLITE_OK){ 
+        std::cerr << "Error SELECT" << std::endl; 
+    }else{ 
+        std::cout << "Operation OK!" << std::endl; 
+    } 
+    return (0); 
 }
 
 // ALL OF THE FUNCTIONS BELOW CALL FOR ADDITIONAL FUCTIONS FOR adding, removing, OR modifying EXISTING PARAMETERS FOR MRAs, Permits, PIs, & Addendums.
@@ -377,67 +430,48 @@ int modify(sqlite3* DB,string data){                                       //wor
 	int interest = 0;
 	std::cin >> interest;
 
-    std:int exit = 1; /*changed it to 1 so that the while loop can begin 
-                    //logically speaking the while loop will never initialize with exit = 0
-                    // because this is always going to be zero*/
-	while(exit != 0){  
 	    if(interest == 1){      
 		    modifyMRA(DB, data);
-            exit = 0;
-	    }//access to the MRA function
-	    else if(interest = 2){  
-	    	modifyPermit(DB, data);     // Function modifyPermit() is commented out
-            exit = 0;
-    	}//access to the permit function
+	    }
+	    else if(interest == 2){  
+	    	modifyPermit(DB, data);    
+    	}
         else if(interest == 3){ 
            modifyPI(DB, data);
-           exit = 0;
-        }//access to the PI function
+        }
         else if(interest == 4){  
-            modifyAddendum(DB, data);   //Function modifyAddendum() createed
-            exit = 0;
-        }//access to the Addendum function
-    }
+            modifyAddendum(DB, data);   
+        }
+
 	return 0;
 }
 
 int remove(sqlite3* DB,string data){       //work on this function Brandon
-
-    std:int exit = 1; /*changed it to 1 so that the while loop can begin 
-                    //logically speaking the while loop will never initialize with exit = 0
-                    // because this is always going to be zero*/
-	while(exit != 0){                                 
+                                
 	    std::cout << "Press 1 to remove data from the MRA Table \n";
 	    std::cout << "Press 2 to remove data from the Permit Table \n";
 	    std::cout << "Press 3 to remove data from the PI Table \n";
 	    std::cout << "Press 4 to remove data from the Addendum Table \n";
 	    int interest = 0;
 	    std::cin >> interest;
+
         if(interest == 1){
             removeMRA(DB, data);//remove MRA data function created and finished
-            exit = 0;
          }
         else if(interest == 2 ){
             removePermit(DB, data);//remove Permit data function created
-            exit = 0;
         }
         else if(interest == 3){
-	 	    removePI(DB, data); //function for PI data removal created
-	        exit = 0;
+	 	    removePI(DB, data); //function for PI data removal create
         }
 	    else if(interest = 4){
 	 	    removeAddendum(DB, data); //function for Addendums has been commented out
-	        exit = 0;
-        }
-	 }	 
+        }	 
 	return 0;
 }
 
 static int insert(sqlite3* DB,string data){              //work on this function Brandon
-	std:int exit = 1; //modified the while loop parameter 
-                      //in the same way that I did for the remove() function so that  it runs
-
-	while(exit != 0){
+	
 	    std::cout << "Press 1 to insert data into the MRA Table \n";
 	    std::cout << "Press 2 to insert data into the Permit Table \n";
 	    std::cout << "Press 3 to insert data into the PI Table \n";
@@ -456,8 +490,7 @@ static int insert(sqlite3* DB,string data){              //work on this function
 	    }
         else if(interest == 4){
 	    	insertAddendum(DB, data); //Function adding Addendum created.
-	    }
- 	}
+        }
 
 	return 0;
 }
@@ -542,9 +575,9 @@ static int user(sqlite3* DB,string data){
 	else if(x == 4){
 		ADDList(DB, data);
 	}
-	//else if(x == 5){
-	//	modify(DB, data);
-	//}
+	else if(x == 5){
+		modify(DB, data);
+	}
     else if(x == 6){
     	remove(DB, data);
     }
